@@ -285,5 +285,41 @@
 
     <!-- Script file -->
     <script src="app.js"></script>
+    
+    <!-- Music Player Script -->
+    <script>
+        (function() {
+            var btn = document.getElementById('music-toggle');
+            var vol = document.getElementById('volume-slider');
+            var audio = document.getElementById('bg-music');
+            var playIcon = document.getElementById('icon-play');
+            var pauseIcon = document.getElementById('icon-pause');
+            
+            if (!btn || !audio) return;
+            
+            audio.volume = vol ? parseFloat(vol.value) : 0.2;
+            
+            btn.onclick = function() {
+                if (audio.paused) {
+                    audio.play().then(function() {
+                        playIcon.style.display = 'none';
+                        pauseIcon.style.display = 'block';
+                    }).catch(function(err) {
+                        console.log('Ses açılamadı:', err);
+                    });
+                } else {
+                    audio.pause();
+                    playIcon.style.display = 'block';
+                    pauseIcon.style.display = 'none';
+                }
+            };
+            
+            if (vol) {
+                vol.oninput = function() {
+                    audio.volume = parseFloat(this.value);
+                };
+            }
+        })();
+    </script>
 </body>
 </html>
