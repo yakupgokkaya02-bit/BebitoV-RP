@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BebitoV RP - Resmi Sunucu Portalı ve Mağazası</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-accent">BebitoV</span> <span class="logo-sub">RP</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#durum" class="active">Ana Sayfa</a>
+                <a href="#magaza">Bağış Mağazası</a>
+                <a href="#kurallar">Sunucu Kuralları</a>
+            </nav>
+            <div class="nav-actions">
+                <button class="cart-btn" id="cartToggleBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                    <span class="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section & Status -->
+        <section id="durum" class="hero-section">
+            <div class="hero-video-bg">
+                <iframe 
+                    src="https://www.youtube.com/embed/zdLtv4EVWJc?autoplay=1&mute=1&loop=1&playlist=zdLtv4EVWJc&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&disablekb=1&playsinline=1" 
+                    frameborder="0" 
+                    allow="autoplay; encrypted-media" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="hero-bg-overlay"></div>
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-info">
+                        <div class="badge">FiveM Roleplay Sunucusu</div>
+                        <h1>BebitoV RP Dünyasına Hoş Geldiniz</h1>
+                        <p class="hero-desc">Özel modlu araçlar, gelişmiş MLO evler, optimize edilmiş scriptler ve yüksek kaliteli rol yapma (RP) deneyimi ile BebitoV RP sunucumuz çok yakında sizlerle!</p>
+                        <div class="hero-actions">
+                            <a href="#magaza" class="btn btn-primary">Mağazayı İncele</a>
+                            <a href="https://discord.gg/wYgh6bzHZ" target="_blank" class="btn btn-secondary">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                                Discord Katıl
+                            </a>
+                            <a href="https://discord.gg/Bebito" target="_blank" class="btn btn-secondary">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                                Priv Sunucusu
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Server Status Widget -->
+                    <div class="status-card centered-status">
+                        <h3 class="status-card-title">Sunucu Durumu</h3>
+                        <div class="status-globe-container">
+                            <div class="status-globe offline"></div>
+                            <span class="status-globe-text">Çevrimdışı (Bakım Modu)</span>
+                        </div>
+                        <div class="status-body">
+                            <p class="status-info">Sunucumuz şu anda hazırlık aşamasındadır. Altyapı ve optimizasyon çalışmaları devam etmektedir.</p>
+                            
+                            <div class="status-meta">
+                                <div class="meta-item">
+                                    <span class="meta-label">Aktif Oyuncu</span>
+                                    <span class="meta-value">0 / 128</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Sunucu IP</span>
+                                    <span class="meta-value italic">Yakında Paylaşılacak</span>
+                                </div>
+                            </div>
+                            
+                            <div class="ip-box">
+                                <button class="btn btn-outline btn-full" id="ipCopyBtn" disabled>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                    IP Adresini Kopyala
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Donation Store Section -->
+        <section id="magaza" class="store-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Bağışçı Mağazası</h2>
+                    <p>Sunucumuza destek olarak sahip olabileceğiniz özel içerikleri aşağıdan inceleyebilirsiniz.</p>
+                </div>
+                
+                <!-- Store Filters -->
+                <div class="store-controls">
+                    <div class="tabs" id="storeTabs">
+                        <button class="tab-btn active" data-tab="all">Tümü</button>
+                        <button class="tab-btn" data-tab="motors">Donet Motor</button>
+                        <button class="tab-btn" data-tab="cars">Donet Araba</button>
+                        <button class="tab-btn" data-tab="yachts">Donet Yat</button>
+                        <button class="tab-btn" data-tab="houses">Donet Ev</button>
+                    </div>
+                    <div class="search-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" id="searchInput" placeholder="Model veya özellik ara...">
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be generated dynamically by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Rules Section -->
+        <section id="kurallar" class="rules-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Sunucu Kuralları</h2>
+                    <p>Düzenli ve kaliteli bir rol ortamı için tüm oyuncularımızın uyması gereken temel kurallar.</p>
+                </div>
+                <div class="rules-list">
+                    <div class="rule-item">
+                        <span class="rule-num">01</span>
+                        <div class="rule-content">
+                            <h3>Rol Dışı Davranış (Fail RP)</h3>
+                            <p>Karakterinizin içinde bulunduğu duruma uygun olmayan ve gerçek dışı kararlar almaktan kaçının. Rol kalitesini her zaman üst seviyede tutun.</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <span class="rule-num">02</span>
+                        <div class="rule-content">
+                            <h3>Karakter Dışı Konuşma (OOC)</h3>
+                            <p>Oyun içi ses kanallarından karakter dışı konuşmak yasaktır. OOC konuları için Discord veya yazılı kanalları kullanın.</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <span class="rule-num">03</span>
+                        <div class="rule-content">
+                            <h3>Sebepsiz Öldürme (RDM & VDM)</h3>
+                            <p>Geçerli bir rol sebebi olmadan başka bir oyuncuyu silahla veya araçla ezerek öldürmek kesinlikle yasaktır.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <p class="copyright">&copy; 2026 BebitoV RP. Tüm hakları saklıdır. Bu site FiveM veya Rockstar Games ile resmi olarak bağlantılı değildir.</p>
+            
+            <!-- Bottom Dark/Light Mode Theme Switcher -->
+            <div class="theme-switcher-container">
+                <span class="theme-label-text">Görünüm:</span>
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Temayı Değiştir">
+                    <div class="theme-toggle-track">
+                        <span class="theme-icon sun-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                        </span>
+                        <span class="theme-icon moon-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        </span>
+                        <div class="theme-toggle-thumb"></div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Sidebar Drawer -->
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-drawer-overlay" id="cartDrawerOverlay"></div>
+        <div class="cart-drawer-content">
+            <div class="cart-drawer-header">
+                <h3>Sepetiniz</h3>
+                <button class="close-btn" id="cartCloseBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <div class="cart-items" id="cartItemsList">
+                <!-- Cart items will be loaded dynamically -->
+                <div class="empty-cart-message">Sepetiniz şu anda boş.</div>
+            </div>
+            <div class="cart-drawer-footer">
+                <div class="cart-summary">
+                    <span>Toplam Tutar:</span>
+                    <span class="cart-total-price" id="cartTotalPrice">0.00 TL</span>
+                </div>
+                <button class="btn btn-primary btn-full" id="checkoutBtn" disabled>Ödeme Yap (Simülasyon)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalCloseBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div class="modal-body" id="modalBody">
+                <!-- Loaded dynamically by Javascript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Form Modal -->
+    <div class="modal" id="checkoutFormModal">
+        <div class="modal-overlay" id="checkoutFormOverlay"></div>
+        <div class="modal-content checkout-form-content">
+            <button class="modal-close" id="checkoutFormCloseBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <h2>Simülasyon Ödemesi</h2>
+            <p>Oyun içi eşyalarınızı tanımlayabilmemiz için lütfen karakter bilgilerinizi giriniz.</p>
+            <form id="checkoutSubmitForm">
+                <div class="form-group">
+                    <label for="charName">Karakter Adı ve Soyadı</label>
+                    <input type="text" id="charName" placeholder="Örn: John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="citizenId">Citizen ID (CID)</label>
+                    <input type="text" id="citizenId" placeholder="Örn: ABC12345" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Ödemeyi Onayla</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Checkout Success Modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-overlay" id="checkoutOverlay"></div>
+        <div class="modal-content checkout-success-content">
+            <div class="success-icon-animation">
+                <div class="success-circle"></div>
+                <div class="success-checkmark"></div>
+            </div>
+            <h2>Ödeme Başarılı!</h2>
+            <p>Simülasyon ödemeniz başarıyla tamamlandı. Bağışınız için teşekkür ederiz!</p>
+            <div class="checkout-details-summary">
+                <p><strong>Citizen ID (CID):</strong> <span id="summaryCid">Yükleniyor...</span></p>
+                <p><strong>Karakter Adı:</strong> <span id="summaryName">Yükleniyor...</span></p>
+                <p><strong>Satın Alınanlar:</strong></p>
+                <ul id="summaryItems"></ul>
+            </div>
+            <p class="checkout-footer-note">Lütfen oyun içi eşyalarınızı teslim almak için Discord üzerinden fatura fişiyle birlikte ticket açın.</p>
+            <button class="btn btn-primary" id="checkoutSuccessCloseBtn">Kapat</button>
+        </div>
+    </div>
+
+    <!-- Script file -->
+    <script src="app.js"></script>
+</body>
+</html>
