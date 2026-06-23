@@ -357,3 +357,35 @@ function loadTheme() {
         body.classList.add('dark-theme'); // default
     }
 }
+
+// --- Music Player Logic ---
+(function() {
+    const musicToggle = document.getElementById('music-toggle');
+    const volumeSlider = document.getElementById('volume-slider');
+    const bgMusic = document.getElementById('bg-music');
+    const iconPlay = document.getElementById('icon-play');
+    const iconPause = document.getElementById('icon-pause');
+    
+    if (!musicToggle || !bgMusic || !volumeSlider) return;
+    
+    bgMusic.volume = parseFloat(volumeSlider.value);
+    
+    musicToggle.addEventListener('click', function() {
+        if (bgMusic.paused) {
+            bgMusic.play().then(function() {
+                iconPlay.style.display = 'none';
+                iconPause.style.display = 'block';
+            }).catch(function(e) {
+                console.log('Audio play failed:', e);
+            });
+        } else {
+            bgMusic.pause();
+            iconPlay.style.display = 'block';
+            iconPause.style.display = 'none';
+        }
+    });
+    
+    volumeSlider.addEventListener('input', function(e) {
+        bgMusic.volume = parseFloat(e.target.value);
+    });
+})();
