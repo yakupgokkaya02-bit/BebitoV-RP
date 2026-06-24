@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadCart();
     renderProducts();
     setupEventListeners();
+    initMusicPlayer();
 });
 
 // Setup Listeners
@@ -358,4 +359,82 @@ function loadTheme() {
     }
 }
 
+// --- Music Player Logic ---
+const playlist = [
+    { title: "Eğme Boyun 2.0", src: "images/bg-music.mp3" },
+    { title: "LVBEL C5, AKDO - MUSTAFA", src: "images/mustafa.mp3" }
+];
+let currentSongIndex = 0;
 
+function initMusicPlayer() {
+    const btn = document.getElementById('music-toggle');
+    const btnPrev = document.getElementById('music-prev');
+    const btnNext = document.getElementById('music-next');
+    const vol = document.getElementById('volume-slider');
+    const audio = document.getElementById('bg-music');
+    const audioSource = document.getElementById('bg-music-source');
+    const playIcon = document.getElementById('icon-play');
+    const pauseIcon = document.getElementById('icon-pause');
+    const nameDisplay = document.getElementById('music-name-display');
+    
+    if (!btn || !audio || !audioSource) return;
+    
+    audio.volume = vol ? parseFloat(vol.value) : 0.2;
+    
+    function loadSong(index) {
+        currentSongIndex = index;
+        const song = playlist[currentSongIndex];
+        audioSource.src = song.src;
+        if (nameDisplay) nameDisplay.textContent = song.title;
+        audio.load();
+        
+        audio.play().then(() => {
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'block';
+        }).catch(() => {
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+        });
+    }
+
+    btn.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.play().then(() => {
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+            }).catch(err => console.log('Ses açılamadı:', err));
+        } else {
+            audio.pause();
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+        }
+    });
+
+    if (btnPrev) {
+        btnPrev.addEventListener('click', () => {
+            let newIndex = currentSongIndex - 1;
+            if (newIndex < 0) newIndex = playlist.length - 1;
+            loadSong(newIndex);
+        });
+    }
+
+    if (btnNext) {
+        btnNext.addEventListener('click', () => {
+            let newIndex = currentSongIndex + 1;
+            if (newIndex >= playlist.length) newIndex = 0;
+            loadSong(newIndex);
+        });
+    }
+
+    if (vol) {
+        vol.addEventListener('input', function() {
+            audio.volume = parseFloat(this.value);
+        });
+    }
+    
+    audio.addEventListener('ended', () => {
+        let newIndex = currentSongIndex + 1;
+        if (newIndex >= playlist.length) newIndex = 0;
+        loadSong(newIndex);
+    });
+}
