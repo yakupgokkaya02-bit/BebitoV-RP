@@ -180,6 +180,12 @@
                             <button onclick="resetMap()" class="map-btn" title="Sıfırla">⟳</button>
                         </div>
                     </div>
+                    <div class="map-legend">
+                        <div class="legend-item">
+                            <span class="legend-dot" style="background: #3b82f6; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 8px; font-weight: bold; width: 14px; height: 14px; border-radius: 50%;">G</span>
+                            <span>Sunucu Garajları</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -384,6 +390,33 @@
             window.resetMap = function() {
                 map.setView([500, 500], -0.5);
             };
+
+            // FiveM Garages List
+            var garages = [
+                { name: "Legion Square Garajı", coords: [330, 435], desc: "Şehir merkezindeki ana genel garaj." },
+                { name: "Pillbox Hill Garajı", coords: [315, 460], desc: "Şehir Hastanesi yakınındaki genel garaj." },
+                { name: "Del Perro Garajı", coords: [380, 250], desc: "Del Perro Bulvarı ve sahili yakınındaki genel garaj." },
+                { name: "Vinewood Garajı", coords: [450, 440], desc: "Kuzey Vinewood bölgesindeki genel garaj." },
+                { name: "LSIA Havalimanı Garajı", coords: [75, 230], desc: "Los Santos Havalimanı bölgesindeki genel garaj." },
+                { name: "Benny's Motorworks", coords: [260, 420], desc: "Strawberry mekanik modifiye ve genel garaj alanı." },
+                { name: "Sandy Shores Garajı", coords: [680, 580], desc: "Sandy Shores çöl bölgesindeki genel garaj." },
+                { name: "Paleto Bay Garajı", coords: [930, 410], desc: "Kuzey Paleto kasabasındaki genel garaj." },
+                { name: "La Mesa Garajı", coords: [290, 530], desc: "La Mesa doğu otobanı yakınındaki genel garaj." },
+                { name: "Davis Garajı", coords: [220, 450], desc: "Güney Davis bölgesi genel garajı." },
+                { name: "Rancho Garajı", coords: [180, 460], desc: "Güney Rancho bölgesi genel garajı." }
+            ];
+
+            garages.forEach(function(garage) {
+                var icon = L.divIcon({
+                    className: 'custom-map-marker',
+                    html: '<div style="background:#3b82f6; width:22px; height:22px; border-radius:50%; border:2px solid #fff; box-shadow:0 0 10px #3b82f6; display:flex; align-items:center; justify-content:center; color:#fff; font-size:11px; font-weight:800; font-family:\'Outfit\'; cursor: pointer;">G</div>',
+                    iconSize: [22, 22],
+                    iconAnchor: [11, 11]
+                });
+                
+                var marker = L.marker(garage.coords, { icon: icon }).addTo(map);
+                marker.bindPopup('<div style="font-family:\'Inter\', sans-serif; color: #fff; padding: 2px;"><strong style="color:#3b82f6; font-size:13px; font-weight:700; display:block; margin-bottom:4px;">' + garage.name + '</strong><span style="font-size:11px; line-height:1.4; opacity:0.85; display:block;">' + garage.desc + '</span></div>');
+            });
         })();
     </script>
 </body>
