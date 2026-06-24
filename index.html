@@ -182,7 +182,9 @@
                     </div>
                     <div class="map-legend">
                         <div class="legend-item">
-                            <span class="legend-dot" style="background: #3b82f6; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 8px; font-weight: bold; width: 14px; height: 14px; border-radius: 50%;">G</span>
+                            <span class="legend-dot" style="background: transparent; width:24px; height:24px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="24" height="24"><path d="M10 45 L50 15 L90 45 L90 50 L80 50 L80 85 L20 85 L20 50 L10 50 Z" fill="#fff" stroke="#000" stroke-width="8" stroke-linejoin="round"/><rect x="30" y="45" width="40" height="8" fill="#000" /><rect x="30" y="60" width="40" height="8" fill="#000" /><rect x="30" y="75" width="40" height="8" fill="#000" /></svg>
+                            </span>
                             <span>Sunucu Garajları</span>
                         </div>
                     </div>
@@ -405,9 +407,9 @@
             garages.forEach(function(garage) {
                 var icon = L.divIcon({
                     className: 'custom-map-marker',
-                    html: '<div style="background:#3b82f6; width:22px; height:22px; border-radius:50%; border:2px solid #fff; box-shadow:0 0 10px #3b82f6; display:flex; align-items:center; justify-content:center; color:#fff; font-size:11px; font-weight:800; font-family:\'Outfit\'; cursor: pointer;">G</div>',
-                    iconSize: [22, 22],
-                    iconAnchor: [11, 11]
+                    html: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="28" height="28" style="filter: drop-shadow(0px 2px 3px rgba(0,0,0,0.5)); cursor: pointer;"><path d="M10 45 L50 15 L90 45 L90 50 L80 50 L80 85 L20 85 L20 50 L10 50 Z" fill="#fff" stroke="#000" stroke-width="8" stroke-linejoin="round"/><rect x="30" y="45" width="40" height="8" fill="#000" /><rect x="30" y="60" width="40" height="8" fill="#000" /><rect x="30" y="75" width="40" height="8" fill="#000" /></svg>',
+                    iconSize: [28, 28],
+                    iconAnchor: [14, 14]
                 });
                 
                 var marker = L.marker(garage.coords, { icon: icon }).addTo(map);
