@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="dark-theme">
@@ -168,23 +169,11 @@
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">Los Santos <span class="text-accent">Haritası</span></h2>
-                    <p class="section-subtitle">GTA 5 haritasını keşfet — önemli noktaları ve bölgeleri incele</p>
+                    <p class="section-subtitle">Sol tıkla sürükle, scroll ile yakınlaştır — haritayı keşfet!</p>
                 </div>
                 <div class="map-container">
                     <div class="map-wrapper">
-                        <div class="map-interactive">
-                            <img 
-                                src="images/gta5-map.png" 
-                                alt="GTA 5 Los Santos Haritası"
-                                id="gtaMapImg"
-                                style="width:100%; height:600px; object-fit:cover; cursor:grab; display:block;"
-                            >
-                            <div class="map-controls">
-                                <button onclick="zoomMap(1.2)" class="map-btn" title="Yakınlaştır">＋</button>
-                                <button onclick="zoomMap(0.8)" class="map-btn" title="Uzaklaştır">－</button>
-                                <button onclick="resetMap()" class="map-btn" title="Sıfırla">⟳</button>
-                            </div>
-                        </div>
+                        <div id="leafletMap" style="width:100%; height:600px; border-radius:16px;"></div>
                     </div>
                     <div class="map-legend">
                         <div class="legend-item">
@@ -201,7 +190,7 @@
                         </div>
                         <div class="legend-item">
                             <span class="legend-dot" style="background: #3b82f6;"></span>
-                            <span>Polis & Hastane</span>
+                            <span>Polis &amp; Hastane</span>
                         </div>
                     </div>
                 </div>
@@ -334,6 +323,7 @@
 
     <!-- Script file -->
     <script src="app.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
     <!-- Music Player + Map Script -->
     <script>
@@ -371,18 +361,25 @@
             }
         });
 
-        // Map Zoom Functions
-        var mapScale = 1;
-        function zoomMap(factor) {
-            mapScale = Math.min(Math.max(mapScale * factor, 0.5), 4);
-            var img = document.getElementById('gtaMapImg');
-            if (img) img.style.transform = 'scale(' + mapScale + ')';
-        }
-        function resetMap() {
-            mapScale = 1;
-            var img = document.getElementById('gtaMapImg');
-            if (img) img.style.transform = 'scale(1)';
-        }
+        // Leaflet GTA 5 Map
+        document.addEventListener('DOMContentLoaded', function() {
+            var mapEl = document.getElementById('leafletMap');
+            if (!mapEl) return;
+            
+            var map = L.map('leafletMap', {
+                crs: L.CRS.Simple,
+                minZoom: -2,
+                maxZoom: 4,
+                zoomControl: true,
+                attributionControl: false
+            });
+            
+            var imgUrl = 'images/gta5-map.png';
+            var bounds = [[0, 0], [1024, 1024]];
+            L.imageOverlay(imgUrl, bounds).addTo(map);
+            map.fitBounds(bounds);
+            map.setZoom(0);
+        });
     </script>
 </body>
 </html>
