@@ -1642,3 +1642,34 @@ a {
     cursor: pointer;
     box-shadow: 0 0 12px rgba(168, 85, 247, 0.6);
 }
+
+/* Leaflet Dark Premium Theme Customizations */
+.leaflet-container {
+    background: #0a0a1a !important;
+    font-family: 'Inter', sans-serif !important;
+    border-radius: 16px;
+}
+
+.leaflet-popup-content-wrapper {
+    background: rgba(20, 12, 35, 0.95) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(249, 122, 243, 0.25) !important;
+    border-radius: 12px !important;
+    color: #fff !important;
+    padding: 6px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+}
+
+.leaflet-popup-tip {
+    background: rgba(20, 12, 35, 0.95) !important;
+    border: 1px solid rgba(249, 122, 243, 0.25) !important;
+}
+
+.custom-map-marker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
