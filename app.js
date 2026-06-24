@@ -384,14 +384,18 @@ function initMusicPlayer() {
     function loadSong(index) {
         currentSongIndex = index;
         const song = playlist[currentSongIndex];
-        audioSource.src = song.src;
+        
+        // Update the audio element source directly for better browser compatibility
+        audio.src = song.src;
+        
         if (nameDisplay) nameDisplay.textContent = song.title;
         audio.load();
         
         audio.play().then(() => {
             playIcon.style.display = 'none';
             pauseIcon.style.display = 'block';
-        }).catch(() => {
+        }).catch((err) => {
+            console.log('Autoplay engellendi veya ses dosyası yüklenemedi:', err);
             playIcon.style.display = 'block';
             pauseIcon.style.display = 'none';
         });
