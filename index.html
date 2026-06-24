@@ -187,6 +187,12 @@
                             </span>
                             <span>Sunucu Garajları</span>
                         </div>
+                        <div class="legend-item">
+                            <span class="legend-dot" style="background: transparent; width:24px; height:24px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="24" height="24"><path d="M 15 65 Q 10 65 10 60 L 15 45 Q 20 30 35 30 L 65 30 Q 80 30 85 45 L 90 60 Q 90 65 85 65 Z" fill="#ff69b4" stroke="#fff" stroke-width="5" stroke-linejoin="round"/><path d="M 22 45 Q 25 35 35 35 L 65 35 Q 75 35 78 45 Z" fill="#fff"/><circle cx="25" cy="65" r="12" fill="#222" stroke="#fff" stroke-width="3"/><circle cx="75" cy="65" r="12" fill="#222" stroke="#fff" stroke-width="3"/></svg>
+                            </span>
+                            <span>Araç Galerisi</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -368,40 +374,21 @@
                 map.setView([500, 500], -0.5);
             };
 
-            // FiveM Garages List (Comprehensive)
+            // FiveM Garages List (Safe Central Locations)
             var garages = [
-                // Merkez & Şehir İçi
-                { name: "Legion Square Garajı", coords: [330, 435], desc: "Şehir merkezindeki ana genel garaj." },
-                { name: "Pillbox Hill Garajı", coords: [315, 460], desc: "Şehir Hastanesi yakınındaki genel garaj." },
-                { name: "Mission Row Garajı", coords: [300, 480], desc: "Mission Row Karakolu çevresi genel garajı." },
-                { name: "Alta Street Garajı", coords: [360, 430], desc: "Şehir merkezi apartmanları çevresi garajı." },
-                
-                // Batı & Sahil
-                { name: "Del Perro Garajı", coords: [380, 250], desc: "Del Perro Bulvarı ve sahili yakınındaki genel garaj." },
-                { name: "Vespucci Beach Garajı", coords: [280, 230], desc: "Vespucci Sahili ve kanallar bölgesi genel garajı." },
-                { name: "Rockford Hills Garajı", coords: [400, 320], desc: "Lüks Rockford Hills bölgesi garajı." },
-                { name: "Chumash Garajı", coords: [550, 160], desc: "Batı sahil yolu Chumash bölgesi garajı." },
-                
-                // Kuzey Şehir
-                { name: "Vinewood Garajı", coords: [450, 440], desc: "Kuzey Vinewood bölgesindeki genel garaj." },
-                { name: "Eclipse Towers Garajı", coords: [480, 370], desc: "Lüks Eclipse rezidansları genel garajı." },
-                { name: "Hawick Garajı", coords: [420, 480], desc: "Hawick caddesi ve mağazalar bölgesi." },
-                { name: "Mirror Park Garajı", coords: [380, 600], desc: "Mirror Park göl çevresi genel garajı." },
-
-                // Güney & Sanayi
-                { name: "LSIA Havalimanı Garajı", coords: [75, 230], desc: "Los Santos Havalimanı bölgesindeki genel garaj." },
-                { name: "Benny's Motorworks", coords: [260, 420], desc: "Strawberry mekanik modifiye ve genel garaj alanı." },
-                { name: "La Mesa Garajı", coords: [290, 530], desc: "La Mesa doğu otobanı yakınındaki genel garaj." },
-                { name: "Davis Garajı", coords: [220, 450], desc: "Güney Davis bölgesi genel garajı." },
-                { name: "Rancho Garajı", coords: [180, 460], desc: "Güney Rancho bölgesi genel garajı." },
-                { name: "Terminal Liman Garajı", coords: [100, 580], desc: "Güney liman ve nakliye bölgesi genel garajı." },
-                { name: "Elysian Island Garajı", coords: [80, 400], desc: "Sanayi adası ve liman depoları garajı." },
-                
-                // Kasaba & Kırsal
+                { name: "Legion Square Garajı", coords: [435, 435], desc: "Şehir merkezindeki ana genel garaj." },
+                { name: "Pillbox Hill Garajı", coords: [460, 415], desc: "Şehir Hastanesi yakınındaki genel garaj." },
+                { name: "Mission Row Garajı", coords: [480, 400], desc: "Mission Row Karakolu çevresi genel garajı." },
+                { name: "Alta Street Garajı", coords: [430, 460], desc: "Şehir merkezi apartmanları çevresi garajı." },
+                { name: "Vinewood Garajı", coords: [550, 450], desc: "Kuzey Vinewood bölgesindeki genel garaj." },
                 { name: "Sandy Shores Garajı", coords: [680, 580], desc: "Sandy Shores çöl bölgesindeki genel garaj." },
-                { name: "Paleto Bay Garajı", coords: [930, 410], desc: "Kuzey Paleto kasabasındaki genel garaj." },
-                { name: "Grapeseed Garajı", coords: [780, 680], desc: "Alamo Denizi kuzeyi Grapeseed tarım bölgesi garajı." },
-                { name: "Harmony Garajı", coords: [630, 450], desc: "Route 68 üzeri Harmony bölgesi genel garajı." }
+                { name: "Grapeseed Garajı", coords: [780, 680], desc: "Alamo Denizi kuzeyi Grapeseed tarım bölgesi garajı." }
+            ];
+
+            // FiveM Galleries List
+            var galleries = [
+                { name: "Premium Deluxe Motorsport", coords: [480, 430], desc: "Şehir merkezindeki lüks araç galerisi." },
+                { name: "Luxury Autos", coords: [450, 420], desc: "Rockford Hills lüks araç galerisi." }
             ];
 
             garages.forEach(function(garage) {
@@ -414,6 +401,18 @@
                 
                 var marker = L.marker(garage.coords, { icon: icon }).addTo(map);
                 marker.bindPopup('<div style="font-family:\'Inter\', sans-serif; color: #fff; padding: 2px;"><strong style="color:#3b82f6; font-size:13px; font-weight:700; display:block; margin-bottom:4px;">' + garage.name + '</strong><span style="font-size:11px; line-height:1.4; opacity:0.85; display:block;">' + garage.desc + '</span></div>');
+            });
+
+            galleries.forEach(function(gallery) {
+                var icon = L.divIcon({
+                    className: 'custom-map-marker',
+                    html: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="30" height="30" style="filter: drop-shadow(0px 2px 3px rgba(0,0,0,0.5)); cursor: pointer;"><path d="M 15 65 Q 10 65 10 60 L 15 45 Q 20 30 35 30 L 65 30 Q 80 30 85 45 L 90 60 Q 90 65 85 65 Z" fill="#ff69b4" stroke="#fff" stroke-width="5" stroke-linejoin="round"/><path d="M 22 45 Q 25 35 35 35 L 65 35 Q 75 35 78 45 Z" fill="#fff"/><circle cx="25" cy="65" r="12" fill="#222" stroke="#fff" stroke-width="3"/><circle cx="75" cy="65" r="12" fill="#222" stroke="#fff" stroke-width="3"/></svg>',
+                    iconSize: [30, 30],
+                    iconAnchor: [15, 15]
+                });
+                
+                var marker = L.marker(gallery.coords, { icon: icon }).addTo(map);
+                marker.bindPopup('<div style="font-family:\'Inter\', sans-serif; color: #fff; padding: 2px;"><strong style="color:#ff69b4; font-size:13px; font-weight:700; display:block; margin-bottom:4px;">' + gallery.name + '</strong><span style="font-size:11px; line-height:1.4; opacity:0.85; display:block;">' + gallery.desc + '</span></div>');
             });
         })();
     </script>
