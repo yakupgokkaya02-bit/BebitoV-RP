@@ -169,14 +169,19 @@
                 </div>
                 <div class="map-container">
                     <div class="map-wrapper">
-                        <iframe 
-                            src="https://gtamap.xyz" 
-                            width="100%" 
-                            height="600" 
-                            frameborder="0" 
-                            allowfullscreen
-                            loading="lazy">
-                        </iframe>
+                        <div class="map-interactive">
+                            <img 
+                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/GTA_V_Map.jpg/1280px-GTA_V_Map.jpg" 
+                                alt="GTA 5 Los Santos Haritası"
+                                id="gtaMapImg"
+                                style="width:100%; height:600px; object-fit:cover; cursor:grab; display:block;"
+                            >
+                            <div class="map-controls">
+                                <button onclick="zoomMap(1.2)" class="map-btn" title="Yakınlaştır">＋</button>
+                                <button onclick="zoomMap(0.8)" class="map-btn" title="Uzaklaştır">－</button>
+                                <button onclick="resetMap()" class="map-btn" title="Sıfırla">⟳</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="map-legend">
                         <div class="legend-item">
@@ -327,9 +332,10 @@
     <!-- Script file -->
     <script src="app.js"></script>
     
-    <!-- Music Player Script -->
+    <!-- Music Player + Map Script -->
     <script>
-        (function() {
+        // Music Player
+        document.addEventListener('DOMContentLoaded', function() {
             var btn = document.getElementById('music-toggle');
             var vol = document.getElementById('volume-slider');
             var audio = document.getElementById('bg-music');
@@ -340,7 +346,7 @@
             
             audio.volume = vol ? parseFloat(vol.value) : 0.2;
             
-            btn.onclick = function() {
+            btn.addEventListener('click', function() {
                 if (audio.paused) {
                     audio.play().then(function() {
                         playIcon.style.display = 'none';
@@ -353,14 +359,27 @@
                     playIcon.style.display = 'block';
                     pauseIcon.style.display = 'none';
                 }
-            };
+            });
             
             if (vol) {
-                vol.oninput = function() {
+                vol.addEventListener('input', function() {
                     audio.volume = parseFloat(this.value);
-                };
+                });
             }
-        })();
+        });
+
+        // Map Zoom Functions
+        var mapScale = 1;
+        function zoomMap(factor) {
+            mapScale = Math.min(Math.max(mapScale * factor, 0.5), 4);
+            var img = document.getElementById('gtaMapImg');
+            if (img) img.style.transform = 'scale(' + mapScale + ')';
+        }
+        function resetMap() {
+            mapScale = 1;
+            var img = document.getElementById('gtaMapImg');
+            if (img) img.style.transform = 'scale(1)';
+        }
     </script>
 </body>
 </html>
