@@ -173,7 +173,12 @@
                 </div>
                 <div class="map-container">
                     <div class="map-wrapper">
-                        <div id="leafletMap" style="width:100%; height:600px; border-radius:16px;"></div>
+                        <div id="mapViewer" style="width:100%;height:600px;border-radius:16px;background:#0a0a1a;position:relative;z-index:1;"></div>
+                        <div class="map-controls" style="z-index:2;">
+                            <button onclick="zoomMap(1.5)" class="map-btn" title="Yakınlaştır">＋</button>
+                            <button onclick="zoomMap(0.5)" class="map-btn" title="Uzaklaştır">－</button>
+                            <button onclick="resetMap()" class="map-btn" title="Sıfırla">⟳</button>
+                        </div>
                     </div>
                     <div class="map-legend">
                         <div class="legend-item">
@@ -321,9 +326,10 @@
         </audio>
     </div>
 
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <!-- Script file -->
     <script src="app.js"></script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
     <!-- Music Player + Map Script -->
     <script>
@@ -361,25 +367,71 @@
             }
         });
 
-        // Leaflet GTA 5 Map
-        document.addEventListener('DOMContentLoaded', function() {
-            var mapEl = document.getElementById('leafletMap');
-            if (!mapEl) return;
-            
-            var map = L.map('leafletMap', {
+        // Interactive Map - Leaflet Simple CRS
+        (function() {
+            var viewer = document.getElementById('mapViewer');
+            if (!viewer) return;
+
+            // Initialize Leaflet Map
+            var map = L.map('mapViewer', {
                 crs: L.CRS.Simple,
-                minZoom: -2,
-                maxZoom: 4,
-                zoomControl: true,
-                attributionControl: false
+                minZoom: -1.5,
+                maxZoom: 3,
+                zoomControl: false,
+                attributionControl: false,
+                maxBounds: [[-100, -100], [1100, 1100]],
+                maxBoundsViscosity: 0.8
             });
-            
-            var imgUrl = 'images/gta5-map.png';
-            var bounds = [[0, 0], [1024, 1024]];
-            L.imageOverlay(imgUrl, bounds).addTo(map);
+
+            // Map Bounds & Image Overlay
+            var bounds = [[0, 0], [1000, 1000]];
+            var image = L.imageOverlay('images/gta5-map.png', bounds).addTo(map);
+
             map.fitBounds(bounds);
-            map.setZoom(0);
-        });
+            map.setView([500, 500], -0.5);
+
+            // Export Zoom/Reset to window so HTML buttons can access them
+            window.zoomMap = function(factor) {
+                if (factor > 1) {
+                    map.zoomIn(0.5);
+                } else {
+                    map.zoomOut(0.5);
+                }
+            };
+
+            window.resetMap = function() {
+                map.setView([500, 500], -0.5);
+            };
+
+            // Custom Markers & Points of Interest
+            var locations = [
+                { name: "Los Santos Şehir Merkezi", coords: [350, 420], type: "center", desc: "Sosyal alanlar, bankalar ve ticaret merkezleri." },
+                { name: "Pillbox Hill Şehir Hastanesi", coords: [320, 470], type: "safe", desc: "Güvenli bölge (Green Zone). Sağlık hizmetleri ve tedavi alanı." },
+                { name: "Mission Row Emniyet Müdürlüğü", coords: [330, 490], type: "safe", desc: "Güvenli bölge (Green Zone). Polis merkezi ve nezarethane." },
+                { name: "Sandy Shores Çölü (İllegal Bölge)", coords: [680, 580], type: "danger", desc: "Tehlikeli çete bölgesi. İllegal sevkiyatlar ve çatışma alanı." },
+                { name: "Paleto Bay Kuzey Bölgesi (Tehlikeli)", coords: [920, 410], type: "danger", desc: "Uzak kuzey kasabası. Gizli depolar ve çete sığınakları." }
+            ];
+
+            var colorMap = {
+                center: "#a855f7",
+                safe: "#22c55e",
+                danger: "#ef4444",
+                police: "#3b82f6"
+            };
+
+            locations.forEach(function(loc) {
+                var color = colorMap[loc.type] || "#ffffff";
+                var icon = L.divIcon({
+                    className: 'custom-map-marker',
+                    html: '<div style="background:' + color + '; width:14px; height:14px; border-radius:50%; border:2px solid #fff; box-shadow:0 0 10px ' + color + '; cursor: pointer;"></div>',
+                    iconSize: [14, 14],
+                    iconAnchor: [7, 7]
+                });
+                
+                var marker = L.marker(loc.coords, { icon: icon }).addTo(map);
+                marker.bindPopup('<div style="font-family:\'Inter\', sans-serif; color: #fff; padding: 2px;"><strong style="color:' + color + '; font-size:13px; font-weight:700; display:block; margin-bottom:4px;">' + loc.name + '</strong><span style="font-size:11px; line-height:1.4; opacity:0.85; display:block;">' + loc.desc + '</span></div>');
+            });
+        })();
     </script>
 </body>
 </html>
