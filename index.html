@@ -189,7 +189,7 @@
                         </div>
                         <div class="legend-item">
                             <span class="legend-dot" style="background: transparent; width:24px; height:24px;">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="24" height="24"><path d="M 15 65 Q 10 65 10 60 L 15 45 Q 20 30 35 30 L 65 30 Q 80 30 85 45 L 90 60 Q 90 65 85 65 Z" fill="#ff69b4" stroke="#fff" stroke-width="5" stroke-linejoin="round"/><path d="M 22 45 Q 25 35 35 35 L 65 35 Q 75 35 78 45 Z" fill="#fff"/><circle cx="25" cy="65" r="12" fill="#222" stroke="#fff" stroke-width="3"/><circle cx="75" cy="65" r="12" fill="#222" stroke="#fff" stroke-width="3"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="24" height="24"><path d="M 30 30 L 70 30 L 80 50 L 90 55 L 90 75 L 80 75 L 80 85 L 65 85 L 65 75 L 35 75 L 35 85 L 20 85 L 20 75 L 10 75 L 10 55 L 20 50 Z" fill="#ff69b4" stroke="#000" stroke-width="6" stroke-linejoin="round"/><path d="M 32 35 L 68 35 L 75 48 L 25 48 Z" fill="#000"/></svg>
                             </span>
                             <span>Araç Galerisi</span>
                         </div>
@@ -387,8 +387,7 @@
 
             // FiveM Galleries List
             var galleries = [
-                { name: "Premium Deluxe Motorsport", coords: [480, 430], desc: "Şehir merkezindeki lüks araç galerisi." },
-                { name: "Luxury Autos", coords: [450, 420], desc: "Rockford Hills lüks araç galerisi." }
+                { name: "Premium Deluxe Motorsport", coords: [445, 425], desc: "Şehir merkezindeki lüks araç galerisi." }
             ];
 
             garages.forEach(function(garage) {
@@ -406,9 +405,9 @@
             galleries.forEach(function(gallery) {
                 var icon = L.divIcon({
                     className: 'custom-map-marker',
-                    html: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="30" height="30" style="filter: drop-shadow(0px 2px 3px rgba(0,0,0,0.5)); cursor: pointer;"><path d="M 15 65 Q 10 65 10 60 L 15 45 Q 20 30 35 30 L 65 30 Q 80 30 85 45 L 90 60 Q 90 65 85 65 Z" fill="#ff69b4" stroke="#fff" stroke-width="5" stroke-linejoin="round"/><path d="M 22 45 Q 25 35 35 35 L 65 35 Q 75 35 78 45 Z" fill="#fff"/><circle cx="25" cy="65" r="12" fill="#222" stroke="#fff" stroke-width="3"/><circle cx="75" cy="65" r="12" fill="#222" stroke="#fff" stroke-width="3"/></svg>',
-                    iconSize: [30, 30],
-                    iconAnchor: [15, 15]
+                    html: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="28" height="28" style="filter: drop-shadow(0px 2px 3px rgba(0,0,0,0.5)); cursor: pointer;"><path d="M 30 30 L 70 30 L 80 50 L 90 55 L 90 75 L 80 75 L 80 85 L 65 85 L 65 75 L 35 75 L 35 85 L 20 85 L 20 75 L 10 75 L 10 55 L 20 50 Z" fill="#ff69b4" stroke="#000" stroke-width="6" stroke-linejoin="round"/><path d="M 32 35 L 68 35 L 75 48 L 25 48 Z" fill="#000"/></svg>',
+                    iconSize: [28, 28],
+                    iconAnchor: [14, 14]
                 });
                 
                 var marker = L.marker(gallery.coords, { icon: icon }).addTo(map);
