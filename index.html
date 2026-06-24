@@ -180,24 +180,6 @@
                             <button onclick="resetMap()" class="map-btn" title="Sıfırla">⟳</button>
                         </div>
                     </div>
-                    <div class="map-legend">
-                        <div class="legend-item">
-                            <span class="legend-dot" style="background: #a855f7;"></span>
-                            <span>Şehir Merkezi</span>
-                        </div>
-                        <div class="legend-item">
-                            <span class="legend-dot" style="background: #22c55e;"></span>
-                            <span>Güvenli Bölgeler</span>
-                        </div>
-                        <div class="legend-item">
-                            <span class="legend-dot" style="background: #ef4444;"></span>
-                            <span>Tehlikeli Bölgeler</span>
-                        </div>
-                        <div class="legend-item">
-                            <span class="legend-dot" style="background: #3b82f6;"></span>
-                            <span>Polis &amp; Hastane</span>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -402,35 +384,6 @@
             window.resetMap = function() {
                 map.setView([500, 500], -0.5);
             };
-
-            // Custom Markers & Points of Interest
-            var locations = [
-                { name: "Los Santos Şehir Merkezi", coords: [350, 420], type: "center", desc: "Sosyal alanlar, bankalar ve ticaret merkezleri." },
-                { name: "Pillbox Hill Şehir Hastanesi", coords: [320, 470], type: "safe", desc: "Güvenli bölge (Green Zone). Sağlık hizmetleri ve tedavi alanı." },
-                { name: "Mission Row Emniyet Müdürlüğü", coords: [330, 490], type: "safe", desc: "Güvenli bölge (Green Zone). Polis merkezi ve nezarethane." },
-                { name: "Sandy Shores Çölü (İllegal Bölge)", coords: [680, 580], type: "danger", desc: "Tehlikeli çete bölgesi. İllegal sevkiyatlar ve çatışma alanı." },
-                { name: "Paleto Bay Kuzey Bölgesi (Tehlikeli)", coords: [920, 410], type: "danger", desc: "Uzak kuzey kasabası. Gizli depolar ve çete sığınakları." }
-            ];
-
-            var colorMap = {
-                center: "#a855f7",
-                safe: "#22c55e",
-                danger: "#ef4444",
-                police: "#3b82f6"
-            };
-
-            locations.forEach(function(loc) {
-                var color = colorMap[loc.type] || "#ffffff";
-                var icon = L.divIcon({
-                    className: 'custom-map-marker',
-                    html: '<div style="background:' + color + '; width:14px; height:14px; border-radius:50%; border:2px solid #fff; box-shadow:0 0 10px ' + color + '; cursor: pointer;"></div>',
-                    iconSize: [14, 14],
-                    iconAnchor: [7, 7]
-                });
-                
-                var marker = L.marker(loc.coords, { icon: icon }).addTo(map);
-                marker.bindPopup('<div style="font-family:\'Inter\', sans-serif; color: #fff; padding: 2px;"><strong style="color:' + color + '; font-size:13px; font-weight:700; display:block; margin-bottom:4px;">' + loc.name + '</strong><span style="font-size:11px; line-height:1.4; opacity:0.85; display:block;">' + loc.desc + '</span></div>');
-            });
         })();
     </script>
 </body>
